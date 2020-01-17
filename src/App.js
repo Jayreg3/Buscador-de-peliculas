@@ -3,6 +3,7 @@ import "./App.css";
 import "bulma/css/bulma.css";
 import Title from "./components/Title";
 import SearchForm from "./components/SearchForm";
+import MoviesList from "./components/MoviesList";
 
 class App extends Component {
   state = {
@@ -11,12 +12,12 @@ class App extends Component {
   _handleSubmit = peliculas => {
     this.setState({ searchResults: peliculas });
   };
-  _renderResults = () => {
-    const { searchResults } = this.state;
-    return searchResults.map(movie => {
-      return <p key={movie.imdbID}>{movie.Title}</p>;
-    });
-  };
+  // _renderResults = () => {
+  //   const { searchResults } = this.state;
+  //   return searchResults.map(movie => {
+  //     return <p key={movie.imdbID}>{movie.Title}</p>;
+  //   });
+  // };
   render() {
     return (
       <div className="App">
@@ -26,7 +27,7 @@ class App extends Component {
           <SearchForm onResults={this._handleSubmit} />
         </div>
         {this.state.searchResults.length > 0 ? (
-          this._renderResults()
+          <MoviesList peliculas={this.state.searchResults} />
         ) : (
           <p>Ningun</p>
         )}
