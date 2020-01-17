@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class Movie extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    poster: PropTypes.string,
+    year: PropTypes.string
+  };
   render() {
     const { poster, title, year } = this.props;
     return (

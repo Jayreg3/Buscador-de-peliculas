@@ -1,11 +1,17 @@
 import React, { Component } from "react";
 import Movie from "./Movie";
+import PropTypes from "prop-types";
 
 class MoviesList extends Component {
+  static propTypes = {
+    peliculas: PropTypes.array
+  };
+
   render() {
+    const { peliculas } = this.props;
     return (
       <div className="MoviesList">
-        {this.props.peliculas.map(pelicula => {
+        {peliculas.map(pelicula => {
           return (
             <div className="MoviesList-item" key={pelicula.imdbID}>
               <Movie
