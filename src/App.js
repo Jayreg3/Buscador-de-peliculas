@@ -4,6 +4,7 @@ import "bulma/css/bulma.css";
 import Title from "./components/Title";
 import SearchForm from "./components/SearchForm";
 import MoviesList from "./components/MoviesList";
+import Detail from "./pages/Detail";
 
 class App extends Component {
   state = {
@@ -27,6 +28,13 @@ class App extends Component {
     );
   };
   render() {
+    const url = new URL(document.location);
+    const hasID = url.searchParams.has("id");
+
+    if (hasID) {
+      return <Detail id={url.searchParams.get("id")} />;
+    }
+
     return (
       <div className="App">
         <Title>Buscador de Pelicuas!</Title>
