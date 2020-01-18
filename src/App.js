@@ -7,10 +7,11 @@ import MoviesList from "./components/MoviesList";
 
 class App extends Component {
   state = {
-    searchResults: []
+    searchResults: [],
+    usedSearch: false
   };
   _handleSubmit = peliculas => {
-    this.setState({ searchResults: peliculas });
+    this.setState({ searchResults: peliculas, usedSearch: true });
   };
   // _renderResults = () => {
   //   const { searchResults } = this.state;
@@ -18,18 +19,24 @@ class App extends Component {
   //     return <p key={movie.imdbID}>{movie.Title}</p>;
   //   });
   // };
+  _renderResults = () => {
+    return this.state.searchResults.length > 0 ? (
+      <MoviesList peliculas={this.state.searchResults} />
+    ) : (
+      <p>Ningun resultado</p>
+    );
+  };
   render() {
     return (
       <div className="App">
-        <p>Busca peliculas</p>
-        <Title>Busca</Title>
+        <Title>Buscador de Pelicuas!</Title>
         <div className="SearchForm-wrapper">
           <SearchForm onResults={this._handleSubmit} />
         </div>
-        {this.state.searchResults.length > 0 ? (
-          <MoviesList peliculas={this.state.searchResults} />
+        {this.state.usedSearch ? (
+          this._renderResults()
         ) : (
-          <p>Ningun</p>
+          <p>Utiliza la barra de búsqueda de arriba para buscar peliculas</p>
         )}
       </div>
     );
