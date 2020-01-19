@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import BackButton from "../components/BackButton";
 
 const API_KEY = "81d045cb";
 
@@ -33,17 +34,11 @@ class Detail extends Component {
     this._fetchMovie({ id });
   }
 
-  _goBack() {
-    window.history.back();
-  }
-
   render() {
     const { Title, Poster, Actors, Metascore, Plot } = this.state.movie;
     return (
       <div>
-        <button className="button" onClick={this._goBack}>
-          &lt;--Claro
-        </button>
+        <BackButton />
         <h1>{Title}</h1>
         <img src={Poster} alt="El póster de la película" />
         <h3>{Actors}</h3>
