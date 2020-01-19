@@ -1,53 +1,25 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bulma/css/bulma.css";
-import Title from "./components/Title";
-import SearchForm from "./components/SearchForm";
-import MoviesList from "./components/MoviesList";
 import Detail from "./pages/Detail";
+import Home from "./pages/Home";
 
 class App extends Component {
-  state = {
-    searchResults: [],
-    usedSearch: false
-  };
-  _handleSubmit = peliculas => {
-    this.setState({ searchResults: peliculas, usedSearch: true });
-  };
   // _renderResults = () => {
   //   const { searchResults } = this.state;
   //   return searchResults.map(movie => {
   //     return <p key={movie.imdbID}>{movie.Title}</p>;
   //   });
   // };
-  _renderResults = () => {
-    return this.state.searchResults.length > 0 ? (
-      <MoviesList peliculas={this.state.searchResults} />
-    ) : (
-      <p>Ningun resultado</p>
-    );
-  };
   render() {
     const url = new URL(document.location);
-    const hasID = url.searchParams.has("id");
-
-    if (hasID) {
-      return <Detail id={url.searchParams.get("id")} />;
-    }
-
-    return (
-      <div className="App">
-        <Title>Buscador de Pelicuas!</Title>
-        <div className="SearchForm-wrapper">
-          <SearchForm onResults={this._handleSubmit} />
-        </div>
-        {this.state.usedSearch ? (
-          this._renderResults()
-        ) : (
-          <p>Utiliza la barra de búsqueda de arriba para buscar peliculas</p>
-        )}
-      </div>
+    const page = url.searchParams.has("id") ? (
+      <Detail id={url.searchParams.get("id")} />
+    ) : (
+      <Home />
     );
+
+    return <div className="App">{page}</div>;
   }
 }
 
