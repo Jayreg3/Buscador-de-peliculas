@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import SearchForm from "../components/SearchForm";
 import Title from "../components/Title";
 import MoviesList from "../components/MoviesList";
+import ContadorContainer from "../containers/Contador";
 
 class Home extends Component {
   state = {
@@ -24,7 +25,9 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Title>Buscador de Pelicuas!</Title>
+        <Title>
+          Buscador de Peliculas! <ContadorContainer />
+        </Title>
         <div className="SearchForm-wrapper">
           <SearchForm onResults={this._handleSubmit} />
         </div>
