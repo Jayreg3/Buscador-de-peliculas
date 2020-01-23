@@ -6,10 +6,14 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { counterFunction } from "./reducers/Contador";
 import { terminoCambiadoHandler } from "./reducers/Buscador";
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 import { Provider } from "react-redux";
 
-const store = createStore(terminoCambiadoHandler);
+const reducer = combineReducers({
+  countReducer: counterFunction,
+  termReducer: terminoCambiadoHandler
+});
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

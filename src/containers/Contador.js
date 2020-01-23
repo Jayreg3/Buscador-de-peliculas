@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import Contador from "../components/Contador";
 
 const mapStateToProps = state => {
-  return { counter: state.counter };
+  return { counter: state.countReducer.counter };
 };
 
 const mapDispatchToProps = dispatch => {

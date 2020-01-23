@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import SearchForm from "../components/SearchForm";
 
 const mapStateToProps = state => {
-  return { terminoBusqueda: state.terminoBusqueda };
+  return { terminoBusqueda: state.termReducer.terminoBusqueda };
 };
 
 const mapDispatchToProps = dispatch => {
