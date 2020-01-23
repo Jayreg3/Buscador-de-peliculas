@@ -5,10 +5,11 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { counterFunction } from "./reducers/Contador";
+import { terminoCambiadoHandler } from "./reducers/Buscador";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-const store = createStore(counterFunction);
+const store = createStore(terminoCambiadoHandler);
 
 ReactDOM.render(
   <Provider store={store}>

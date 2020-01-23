@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import SearchForm from "../components/SearchForm";
+//import SearchForm from "../components/SearchForm";
 import Title from "../components/Title";
 import MoviesList from "../components/MoviesList";
 import ContadorContainer from "../containers/Contador";
+import SearchFormContainer from "../containers/Buscador";
 
 class Home extends Component {
   state = {
@@ -29,7 +30,7 @@ class Home extends Component {
           Buscador de Peliculas! <ContadorContainer />
         </Title>
         <div className="SearchForm-wrapper">
-          <SearchForm onResults={this._handleSubmit} />
+          <SearchFormContainer onResults={this._handleSubmit} />
         </div>
         {this.state.usedSearch ? (
           this._renderResults()

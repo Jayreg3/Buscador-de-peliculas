@@ -3,19 +3,19 @@ import React, { Component } from "react";
 const API_KEY = "81d045cb";
 
 class SearchForm extends Component {
-  state = {
-    inputMovie: ""
-  };
-
-  inputMovieChangeHandler = evento => {
-    this.setState({ inputMovie: evento.target.value });
-  };
+  // state = {
+  //   inputMovie: ""
+  // };
+  //
+  // inputMovieChangeHandler = evento => {
+  //   this.setState({ inputMovie: evento.target.value });
+  // };
 
   submitMovieHandler = evento => {
     evento.preventDefault();
     // alert(this.state.inputMovie);
     fetch(
-      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${this.state.inputMovie}`
+      `http://www.omdbapi.com/?apikey=${API_KEY}&s=${this.props.terminoBusqueda}`
     )
       .then(res => res.json())
       .then(results => {
@@ -27,14 +27,19 @@ class SearchForm extends Component {
       });
   };
 
+  terminoCambiadoHandler = evento => {
+    console.log("[cambiadoHandler]..." + evento.target.value);
+    this.props.cambiado(evento.target.value);
+  };
+
   render() {
     return (
       <form onSubmit={this.submitMovieHandler}>
         <div className="field has-addons">
           <div className="control">
             <input
-              onChange={this.inputMovieChangeHandler}
-              value={this.state.inputMovie}
+              onChange={this.terminoCambiadoHandler}
+              value={this.props.terminoBusqueda}
               className="input"
               type="text"
               placeholder="Busca una pelicula"
